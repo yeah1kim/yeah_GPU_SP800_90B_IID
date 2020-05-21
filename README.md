@@ -18,7 +18,9 @@ Alternatively, run the program on the windows command prompt:
 CUDA_IID_PERM.exe
 </code></pre>
 
-* The IID noise source
+* __The IID noise source__
+![Result_IID_noise_source](https://user-images.githubusercontent.com/65601912/82523667-d8d50f80-9b67-11ea-912e-a045a250eb9c.JPG)
 
-* The non-IID noise source
+* __The non-IID noise source__
+![Result_non_IID_noise_source](https://user-images.githubusercontent.com/65601912/82523680-e4c0d180-9b67-11ea-8948-e62d5f070e6a.JPG)
 
