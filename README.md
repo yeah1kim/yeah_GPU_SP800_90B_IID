@@ -1,4 +1,4 @@
-# GPU-based parallel implementation of the permutation testing in NIST SP 800-90B.
+# GPU-based parallel implementation of the permutation testing in NIST SP 800-90B
 
 ## Requirements
 * Platform : Winodws 10
