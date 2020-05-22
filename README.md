@@ -7,8 +7,8 @@
 * GPU have at least 2GB or more of the global memory.
 
 ## Overview
-* `<test_data/>` has binary files for testing.
-* `<cpp/>` holds the codebase.
+* `test_data/` has binary files for testing.
+* `cpp/` holds the codebase.
 
 ## How to run
 Load the projects in Visual Studio, and then run the program (press Ctrl+F5 (Start without debugging) or use the green Start button on the Visual Studio toolbar). 
