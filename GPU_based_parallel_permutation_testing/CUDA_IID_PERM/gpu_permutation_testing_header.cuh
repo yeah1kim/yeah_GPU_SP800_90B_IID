@@ -29,20 +29,6 @@
 #include <stdio.h>
 #include <time.h>
 
-#define INFILEPATH		"C:\\Users\\user\\Desktop\\data_p"
-#define INFILENAME		"truerand_1bit" 
-//"truerand_8bit"
-//"Noise0-FB3R-C40R-8-1000000" 
-
-#define SAMPLESIZE		1
-#define LEN				1000000
-#define BLEN			125000
-
-#define NUM_SHUFFLE		2048
-#define NUM_BLK			8
-#define NUM_THD			256
-#define CYCLE			5
-
 /* data structure that the value of the parameter is entered by the user for the GPU-based parallel permutation testing */
 typedef struct _USER_INPUT_GPU_COMP {
 	/* nNum_iteration_in_parallel = nNum_cuda_block x nNum_cuda_thread */
