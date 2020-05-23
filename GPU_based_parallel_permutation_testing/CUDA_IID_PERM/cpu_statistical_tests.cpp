@@ -74,7 +74,7 @@ void conversion2(DATA *conversion_bdata_comp, const DATA *data_comp)
 void calculate_statsistics(TEST_COMP *test_comp, const DATA *data_comp)
 {
 	test_comp->dMean = 0;
-	for (int i = 0; i < data_comp->nLen; i++)
+	for (uint32_t i = 0; i < data_comp->nLen; i++)
 		test_comp->dMean += data_comp->pData[i];
 	test_comp->dMean /= (double)data_comp->nLen;
 
