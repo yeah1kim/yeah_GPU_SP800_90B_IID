@@ -210,7 +210,7 @@ uint32_t copy_count_from_gpu_to_host(TEST_COMP *test_comp, GPU_TEST_COMP *gpu_co
 uint32_t check_continue_invoke_kernel(TEST_COMP *test_comp, uint32_t current_num_invoke_kernel, uint32_t max_num_invoke_kernel)
 {
 	uint32_t check = 0;
-	for (int i = 0; i < NUM_TEST; i++)
+	for (uint32_t i = 0; i < NUM_TEST; i++)
 		if (((test_comp->nCount[0][i] + test_comp->nCount[1][i]) > 5) && ((test_comp->nCount[1][i] + test_comp->nCount[2][i]) > 5))
 			check++;
 	if (check == NUM_TEST)
@@ -487,7 +487,7 @@ uint32_t read_data_from_file(DATA *data_comp)
 		printf("File open fails. \n");
 		return 0;
 	}
-	for (int i = 0; i < data_comp->nLen; i++) {
+	for (uint32_t i = 0; i < data_comp->nLen; i++) {
 		temp = 0;
 		fread(&temp, sizeof(unsigned char), 1, fin);
 		data_comp->pData[i] = (temp&mask);
