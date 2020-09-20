@@ -1,0 +1,86 @@
+﻿  Compiling CUDA source file gpu_permutation_testing.cu...
+  
+  C:\Users\user\Desktop\cuda_iid\cuda_iid>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\bin\nvcc.exe" -gencode=arch=compute_35,code=\"sm_35,compute_35\" --use-local-env -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\bin\HostX86\x64" -x cu  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile -cudart static     -D_CRT_SECURE_NO_WARNINGS -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Fdx64\Release\vc141.pdb /FS /Zi  /MD " -o x64\Release\gpu_permutation_testing.cu.obj "C:\Users\user\Desktop\cuda_iid\cuda_iid\gpu_permutation_testing.cu" 
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(824): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(1759): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(2621): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(3460): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(4403): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(5301): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(6212): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(7093): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(7892): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt/device_functions.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt/device_functions.h(773): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt/device_functions.h(1628): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\device_double_functions.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\sm_20_intrinsics.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\sm_20_intrinsics.h(925): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(31): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(36): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(37): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(38): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(39): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(40): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(42): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(45): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(46): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(47): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(71): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(90): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(97): warning : transfer of control bypasses initialization of:
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(824): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(1759): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(2621): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(3460): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(4403): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(5301): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(6212): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(7093): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(7892): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt/device_functions.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt/device_functions.h(773): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt/device_functions.h(1628): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\device_double_functions.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\sm_20_intrinsics.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\sm_20_intrinsics.h(925): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(31): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(36): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(37): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(38): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(39): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(40): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(42): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(45): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(46): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(47): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(71): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(90): warning : transfer of control bypasses initialization of:
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(97): warning : transfer of control bypasses initialization of:
+  gpu_permutation_testing.cu
+C:/Users/user/Desktop/cuda_iid/cuda_iid/gpu_permutation_testing.cu(56): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(824): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(1759): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(2621): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(3461): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(4403): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(5301): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(6212): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(7093): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\program files\nvidia gpu computing toolkit\cuda\v10.1\include\crt\math_functions.h(7892): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  main.cpp
+  permutation_testing.cpp
+  statistical_test.cpp
+c:\users\user\desktop\cuda_iid\cuda_iid\statistical_test.cpp(142): warning C4334: '<<': 32비트 시프트의 결과가 암시적으로 64비트로 변환됩니다. 64비트 시프트를 사용하시겠습니까?
+c:\users\user\desktop\cuda_iid\cuda_iid\statistical_test.cpp(148): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  utils.cpp
+     C:\Users\user\Desktop\cuda_iid\x64\Release\cuda_iid.lib 라이브러리 및 C:\Users\user\Desktop\cuda_iid\x64\Release\cuda_iid.exp 개체를 생성하고 있습니다.
+  코드를 생성하고 있습니다.
+  2 of 118 functions ( 1.7%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  코드를 생성했습니다.
+  cuda_iid.vcxproj -> C:\Users\user\Desktop\cuda_iid\x64\Release\cuda_iid.exe
