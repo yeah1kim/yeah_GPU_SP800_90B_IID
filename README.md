@@ -14,8 +14,8 @@
 Load the projects in Visual Studio, and then run the program (press Ctrl+F5 (Start without debugging) or use the green Start button on the Visual Studio toolbar). 
 
 Alternatively, run the program on the windows command prompt:
-<pre><code>cd /path/to/GPU_based_parallel_permutation_testing/x64/Release
-CUDA_IID_PERM.exe
+<pre><code>cd /path/to/cuda_iid/x64/Release
+cuda_iid.exe
 </code></pre>
 
 * __The IID noise source__
