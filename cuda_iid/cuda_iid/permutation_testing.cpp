@@ -47,14 +47,14 @@ bool permutation_testing(uint8_t *data, uint32_t size, uint32_t len, uint32_t nu
 	}
 
 	/* perform 18 Statisitcal tests on the original data(input). */
-	printf("Performing 18 Statisitcal tests on the original data. \n");
+	printf("Performing 19 statisitcal tests on the original data. \n");
 	run_tests(results, dmean, dmedian, data, size, len);
 	if (verbose)
 		print_original_test_statistics(results);
 
 
 	/* perform 10,000 iterations in parallel on the GPU. */
-	printf("Performing 10,000 iterations in parallel on the GPU. \n");
+	printf("Performing 10,000 iterations(shuffling + 18 statisitcal tests) in parallel on the GPU. \n");
 	double dgpu_runtime = 0; /* runtime of 10,000 iterations measured by CUDA timer */
 	iidchk = gpu_permutation_testing(&dgpu_runtime, counts, results, dmean, dmedian, data, size, len, numparallel, numblock, numthread);
 
