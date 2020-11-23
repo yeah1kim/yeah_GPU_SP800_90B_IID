@@ -4,7 +4,7 @@
 * Platform : Winodws 10
 * Visual Studio 2017
 * Cuda compilation tools, release 10.1, V10.1.105
-* GPU have at least 2GB or more of the global memory.
+* GPU have at least 2.5GB or more of the global memory.
 
 ## Overview
 * `test_data/` has binary files for testing.
@@ -19,8 +19,8 @@ cuda_iid.exe
 </code></pre>
 
 * __The IID noise source__
-![Result_IID_noise_source](https://user-images.githubusercontent.com/65601912/82523667-d8d50f80-9b67-11ea-912e-a045a250eb9c.JPG)
+![iid](https://user-images.githubusercontent.com/65601912/99964203-493e4100-2dd6-11eb-9f32-ff79b0f00a21.JPG)
 
 * __The non-IID noise source__
-![Result_non_IID_noise_source](https://user-images.githubusercontent.com/65601912/82523680-e4c0d180-9b67-11ea-8948-e62d5f070e6a.JPG)
+![non_iid](https://user-images.githubusercontent.com/65601912/99964296-6bd05a00-2dd6-11eb-976f-a3f594275dc7.JPG)
 
