@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CudaCompile Include="gpu_permutation_testing.cu" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="permutation_testing.cpp" />
+    <ClCompile Include="statistical_test.cpp" />
+    <ClCompile Include="utils.cpp" />
+    <ClCompile Include="bzip\blocksort.cpp">
+      <Filter>bzip</Filter>
+    </ClCompile>
+    <ClCompile Include="bzip\bzlib.cpp">
+      <Filter>bzip</Filter>
+    </ClCompile>
+    <ClCompile Include="bzip\compress.cpp">
+      <Filter>bzip</Filter>
+    </ClCompile>
+    <ClCompile Include="bzip\crctable.cpp">
+      <Filter>bzip</Filter>
+    </ClCompile>
+    <ClCompile Include="bzip\decompress.cpp">
+      <Filter>bzip</Filter>
+    </ClCompile>
+    <ClCompile Include="bzip\huffman.cpp">
+      <Filter>bzip</Filter>
+    </ClCompile>
+    <ClCompile Include="bzip\randtable.cpp">
+      <Filter>bzip</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="device_functions.cuh" />
+    <ClInclude Include="bzip\bzlib.h">
+      <Filter>bzip</Filter>
+    </ClInclude>
+    <ClInclude Include="bzip\bzlib_private.h">
+      <Filter>bzip</Filter>
+    </ClInclude>
+    <ClInclude Include="nvidia_help\exception.h">
+      <Filter>nvidia_help</Filter>
+    </ClInclude>
+    <ClInclude Include="nvidia_help\helper_cuda.h">
+      <Filter>nvidia_help</Filter>
+    </ClInclude>
+    <ClInclude Include="nvidia_help\helper_functions.h">
+      <Filter>nvidia_help</Filter>
+    </ClInclude>
+    <ClInclude Include="nvidia_help\helper_image.h">
+      <Filter>nvidia_help</Filter>
+    </ClInclude>
+    <ClInclude Include="nvidia_help\helper_string.h">
+      <Filter>nvidia_help</Filter>
+    </ClInclude>
+    <ClInclude Include="nvidia_help\helper_timer.h">
+      <Filter>nvidia_help</Filter>
+    </ClInclude>
+    <ClInclude Include="header.h" />
+    <ClInclude Include="kernel_functions.cuh" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="bzip">
+      <UniqueIdentifier>{d26cf6a1-530f-4a0e-9651-3cedf91f0b39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nvidia_help">
+      <UniqueIdentifier>{64f981a7-da44-41b7-9532-7f86f1b4a597}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

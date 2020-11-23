@@ -1,16 +1,41 @@
+/*
+ * GPU-based parallel implementation of the IID test of NIST SP 800-90B.
+ *
+ * Copyright(C) < 2020 > <Yewon Kim>
+ *
+ * This program is free software : you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.If not, see < https://www.gnu.org/licenses/>.
+ */
+
 #ifndef _DEVICE_FUNCTIONS_H_
 #define _DEVICE_FUNCTIONS_H_
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 #include "header.h"
 
+ /**
+  * @brief Excursion test
+  * @return void
+  */
 __device__ void dev_test1(double *out_max, const double mean, const uint8_t *data, const uint32_t len,
 	const uint32_t N, uint32_t tid)
 {
 	double max = 0, temp = 0, sum = 0;
-	uint32_t i = 0;
+	uint64_t i = 0;
+	uint64_t idx = 0;
 	for (i = 0; i < len; i++) {
-		sum += data[i * N + tid];
+		idx = i * N + tid;
+		sum += data[idx];
 		temp = fabs(sum - ((i + 1)*mean));
 		if (max < temp)
 			max = temp;
@@ -18,20 +43,28 @@ __device__ void dev_test1(double *out_max, const double mean, const uint8_t *dat
 	*out_max = max;
 }
 
+/**
+ * @brief Number of directional runs, Length of directional runs, Number of increases and decreases
+ *        Number of runs based on the median, Length of runs based on the median
+ * @return void
+ */
 __device__ void dev_test2_6(double *out1, double *out2, double *out3, double *out4, double *out5,
 	const double median, const uint8_t *data, const uint32_t len, const uint32_t N, uint32_t tid)
 {
-	uint32_t i;
+	uint64_t i;
 	*out1 = 1; *out4 = 1;
 	uint32_t run1 = 1, run2 = 1;
 	uint32_t pos = 0;
 	bool f1 = 0, f2 = 0;
 	bool fm1 = 0, fm2 = 0;
+	uint64_t idx1 = 0, idx2 = 0;
 
-	if (data[tid] <= data[N + tid])
+	idx1 = tid;
+	idx2 = N + tid;
+	if (data[idx1] <= data[idx2])
 		f1 = 1;
 
-	if (data[tid] >= median)
+	if (data[idx1] >= median)
 		fm1 = 1;
 
 	for (i = 1; i < (len - 1); i++) {
@@ -39,10 +72,12 @@ __device__ void dev_test2_6(double *out1, double *out2, double *out3, double *ou
 		f2 = 0;
 		fm2 = 0;
 
-		if (data[i*N + tid] <= data[(i + 1)*N + tid])
+		idx1 = i * N + tid;
+		idx2 = (i + 1)*N + tid;
+		if (data[idx1] <= data[idx2])
 			f2 = 1;
 
-		if (data[i*N + tid] >= median)
+		if (data[idx1] >= median)
 			fm2 = 1;
 
 		if (f1 == f2)
@@ -67,7 +102,8 @@ __device__ void dev_test2_6(double *out1, double *out2, double *out3, double *ou
 	}
 	pos += f1;
 
-	if (data[(len - 1)*N + tid] >= median)
+	idx1 = (len - 1)*N + tid;
+	if (data[idx1] >= median)
 		fm2 = 1;
 	else
 		fm2 = 0;
@@ -87,20 +123,25 @@ __device__ void dev_test2_6(double *out1, double *out2, double *out3, double *ou
 		*out3 = (len - pos);
 }
 
+/**
+ * @brief Average collision test statistic, Maximum collision test statistic
+ * @return void
+ */
 __device__ void dev_test7_8(double *out_average, double *out_max, const uint8_t *data, const uint32_t size,
 	const uint32_t len, const uint32_t N, uint32_t tid)
 {
-	uint32_t i = 0, j = 0, k = 0;
+	uint64_t i = 0, j = 0, k = 0;
 	bool dups[256] = { 0, };
 	uint32_t cnt = 0;
 	uint32_t max = 0;
 	double avg = 0;
-
+	uint64_t idx = 0;
 	while (i + j < len) {
 		for (k = 0; k < (uint32_t)(1 << size); k++) dups[k] = false;
 
 		while (i + j < len) {
-			if (dups[data[(i + j)*N + tid]]) {
+			idx = (i + j)*N + tid;
+			if (dups[data[idx]]) {
 				avg += j;
 				if (j > max)
 					max = j;
@@ -110,7 +151,7 @@ __device__ void dev_test7_8(double *out_average, double *out_max, const uint8_t 
 				break;
 			}
 			else {
-				dups[data[(i + j)*N + tid]] = true;
+				dups[data[idx]] = true;
 				++j;
 			}
 		}
@@ -121,22 +162,34 @@ __device__ void dev_test7_8(double *out_average, double *out_max, const uint8_t 
 	*out_max = (double)max;
 }
 
+/**
+ * @brief Periodicity test, Covariance test
+ * @return void
+ */
 __device__ void dev_test9_and_14(double *out_num, double *out_strength, const uint8_t *data, const uint32_t len,
 	const uint32_t N, uint32_t tid, const uint32_t lag)
 {
 	double temp1 = 0, temp2 = 0;
-	uint32_t i = 0;
+	uint64_t i = 0;
+	uint64_t idx1 = 0, idx2 = 0;
 	for (i = 0; i < len - lag; i++) {
-		if (data[i*N + tid] == data[(i + lag)*N + tid])
+		idx1 = i * N + tid;
+		idx2 = (i + lag)*N + tid;
+
+		if (data[idx1] == data[idx2])
 			temp1++;
-		temp2 += (data[i*N + tid] * data[(i + lag)*N + tid]);
+		temp2 += (data[idx1] * data[idx2]);
 	}
 	*out_num = temp1;
 	*out_strength = temp2;
 }
 
 
-// binary
+/**
+ * @brief Calculate the hamming weight
+ * @param uint8_t #data: 1-byte data
+ * @return uint8_t $tmp: hamming weight
+ */
 __device__ uint8_t dev_hammingweight(uint8_t data) {
 	uint8_t tmp = 0;
 	tmp = (data >> 7) & 0x1;
@@ -150,6 +203,10 @@ __device__ uint8_t dev_hammingweight(uint8_t data) {
 	return tmp;
 }
 
+/**
+ * @brief (for binary data)Number of directional runs, Length of directional runs, Number of increases and decreases
+ * @return void
+ */
 __device__ void dev_binary_test2_4(double *out_num, double *out_len, double *out_max, const uint8_t *data,
 	const uint32_t len, const uint32_t N, uint32_t tid)
 {
@@ -181,6 +238,10 @@ __device__ void dev_binary_test2_4(double *out_num, double *out_len, double *out
 	*out_max = (double)max(pos, len - pos);
 }
 
+/**
+ * @brief (for binary data)Periodicity test, Covariance test
+ * @return void
+ */
 __device__ void dev_binary_test9_and_14(double *out_num, double *out_strength, const uint8_t *data, const uint32_t len,
 	const uint32_t N, uint32_t tid, const uint32_t lag)
 {
@@ -195,6 +256,11 @@ __device__ void dev_binary_test9_and_14(double *out_num, double *out_strength, c
 	*out_strength = temp2;
 }
 
+
+/**
+ * @brief Number of runs based on the median, Length of runs based on the median
+ * @return void
+ */
 __device__ void dev_test5_6(double *out_num, double *out_len, const double median, const uint8_t *data, const uint32_t len,
 	const uint32_t N, uint32_t tid)
 {

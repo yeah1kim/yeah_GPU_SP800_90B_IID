@@ -1,3 +1,22 @@
+/*
+ * GPU-based parallel implementation of the IID test of NIST SP 800-90B.
+ *
+ * Copyright(C) < 2020 > <Yewon Kim>
+ *
+ * This program is free software : you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.If not, see < https://www.gnu.org/licenses/>.
+ */
+
 #ifndef _KERNEL_FUNCTIONS_H_
 #define _KERNEL_FUNCTIONS_H_
 #include "cuda_runtime.h"
@@ -6,35 +25,68 @@
 #include "header.h"
 #include "device_functions.cuh"
 
-__global__ void setup_curand_kernel(curandState *curand, const uint32_t seed)
+ /**
+  * @brief The kernel function: Initialize the seeds used by curand() function.
+ * @param curandState $dev_curand[]: Seeds used by curand() function
+ * @param const uint32_t $seed: Seed to initialize the seeds $curand
+ * @return void
+  */
+__global__ void setup_curand_kernel(curandState *dev_curand, const uint32_t seed)
 {
 	uint32_t id = threadIdx.x + blockIdx.x * blockDim.x;
-	curand_init(seed, id, 0, &curand[id]);
+	curand_init(seed, id, 0, &dev_curand[id]);
 }
 
+/**
+ * @brief The kernel function: Generate {$N} shuffled data by permuting the original data {$N} times in parallel.
+ * @param uint8_t $Ndata[] {$N} shuffled data
+ * @param const uint8_t $data[] Original data(input)
+ * @param curandState $dev_curand[]: Seeds used by curand() function
+ * @param const uint32_t $len: Number of samples in the original data
+ * @param const uint32_t $N: Number of iterations processing in parallel on the GPU
+ * @return void
+ */
 __global__ void shuffling_kernel(uint8_t *Ndata, const uint8_t *data, curandState *dev_curand, const uint32_t len, const uint32_t N)
 {
-	uint32_t tid = threadIdx.x + blockIdx.x * blockDim.x;
-	uint32_t i = 0, j = len - 1, random = 0;
+	uint64_t tid = threadIdx.x + blockIdx.x * blockDim.x;
+	uint64_t i = 0, j = len - 1, random = 0;
 	uint8_t tmp = 0;
+	uint64_t idx = 0, idx2 = 0;
 
 	for (i = 0; i < len; i++) {
-		Ndata[i * N + tid] = data[i];
+		 idx= i * N + tid;
+		Ndata[idx] = data[i];
 	}
 
 	while (j > 0) {
 		random = curand(&dev_curand[tid]) % j;
-		tmp = Ndata[random * N + tid];
-		Ndata[random * N + tid] = Ndata[j * N + tid];
-		Ndata[j * N + tid] = tmp;
+		idx = random * N + tid;
+		idx2 = j * N + tid;
+		tmp = Ndata[idx];
+		Ndata[idx] = Ndata[idx2];
+		Ndata[idx2] = tmp;
 		j--;
 	}
 }
 
-__global__ void b2_statistical_tests_kernel(uint32_t *counts, const double *results, const double mean, const double median,
+/**
+ * @brief The kernel function: Perform 18 statistical tests on each of {$N} shuffled data,
+ *							   and compares the shuffled and original test statistics in parallel.
+ * @param uint32_t $counts[]: The counters, that is original test statistics's rankings
+ * @param const double $results[]: Results of 19 Statisitcal tests on the original data(input)
+ * @param const double $mean: Mean value of the original data(input)
+ * @param const double $median: Median value of the original data(input)
+ * @param const uint8_t $Ndata: {$N} shuffled data
+ * @param const uint32_t $size: The size of sample in bits (1~8)
+ * @param const uint32_t $len: The number of samples in the original data
+ * @param const uint32_t $N: The number of iterations processing in parallel on the GPU
+ * @param constuint32_t $num_block: The number of CUDA blocks
+ * @return void
+ */
+__global__ void statistical_tests_kernel(uint32_t *counts, const double *results, const double mean, const double median,
 	const uint8_t *Ndata, const uint32_t size, const uint32_t len, const uint32_t N, const uint32_t num_block)
 {
-	uint32_t tid = threadIdx.x + (blockIdx.x % num_block)*blockDim.x;
+	uint32_t tid = threadIdx.x + (blockIdx.x % num_block) * blockDim.x;
 
 	if ((blockIdx.x / num_block) == 0) {
 		double result1 = 0, result2 = 0;
@@ -109,6 +161,18 @@ __global__ void b2_statistical_tests_kernel(uint32_t *counts, const double *resu
 	}
 }
 
+/**
+ * @brief The kernel function for binary data
+ *  - Generate {$N} shuffled data by permuting the original data {$N} times in parallel and perform conversion II.
+ * @param uint8_t $Ndata[] {$N} shuffled data
+ * @param uint8_t $bNdata[] {$N} shuffled data after conversion II
+ * @param const uint8_t $data[] Original data(input)
+ * @param curandState $dev_curand[]: Seeds used by curand() function
+ * @param const uint32_t $len: Number of samples in the original data
+ * @param const uint32_t $blen: Number of samples in the original data after converion II
+ * @param const uint32_t $N: Number of iterations processing in parallel on the GPU
+ * @return void
+ */
 __global__ void binary_shuffling_kernel(uint8_t *Ndata, uint8_t *bNdata, const uint8_t *data, curandState *dev_curand, 
 	const uint32_t len, const uint32_t blen, const uint32_t N)
 {
@@ -141,7 +205,24 @@ __global__ void binary_shuffling_kernel(uint8_t *Ndata, uint8_t *bNdata, const u
 	}
 }
 
-__global__ void binary_b4_statistical_tests_kernel(uint32_t *counts, const double *results, const double mean, const double median,
+
+/**
+ * @brief The kernel function for binary data
+  *  - Perform 18 statistical tests on each of {$N} shuffled data and compares the shuffled and original test statistics in parallel.
+ * @param uint32_t $counts[]: The counters, that is original test statistics's rankings
+ * @param const double $results[]: Results of 19 Statisitcal tests on the original data(input)
+ * @param const double $mean: Mean value of the original data(input)
+ * @param const double $median: Median value of the original data(input)
+ * @param const uint8_t $Ndata: {$N} shuffled data
+ * @param const uint8_t $bNdata: {$N} shuffled data after conversion II
+ * @param const uint32_t $size: The size of sample in bits (1~8)
+ * @param const uint32_t $len: The number of samples in the original data
+ * @param const uint32_t $blen: Number of samples in the original data after converion II
+ * @param const uint32_t $N: The number of iterations processing in parallel on the GPU
+ * @param constuint32_t $num_block: The number of CUDA blocks
+ * @return void
+ */
+__global__ void binary_statistical_tests_kernel(uint32_t *counts, const double *results, const double mean, const double median,
 	const uint8_t *Ndata, const uint8_t *bNdata, const uint32_t size, const uint32_t len, const uint32_t blen, const uint32_t N, const uint32_t num_block)
 {
 	double result1 = 0, result2 = 0, result3 = 0;
@@ -224,13 +305,6 @@ __global__ void binary_b4_statistical_tests_kernel(uint32_t *counts, const doubl
 		else								atomicAdd(&counts[53], 1);
 	}
 }
-
-
-
-
-
-
-
 
 
 

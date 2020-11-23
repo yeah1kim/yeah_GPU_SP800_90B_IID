@@ -27,6 +27,7 @@ int run_tests(double *results, double dmean, double dmedian, uint8_t *data, uint
 	if (size == 1) {
 		excursion_test(&results[0], dmean, data, len);
 		runs_based_on_median(&results[4], &results[5], dmedian, data, len);
+		compression(&results[18], data, len, size);
 
 		uint32_t blen = len / 8;
 		if ((len % 8) != 0)	blen++;
@@ -56,6 +57,7 @@ int run_tests(double *results, double dmean, double dmedian, uint8_t *data, uint
 		periodicity_covariance_test(&results[10], &results[15], data, len, 8);
 		periodicity_covariance_test(&results[11], &results[16], data, len, 16);
 		periodicity_covariance_test(&results[12], &results[17], data, len, 32);
+		compression(&results[18], data, len, size);
 	}
 
 	return 0;
@@ -106,7 +108,7 @@ void directional_runs_and_number_of_inc_dec(double *out_num, double *out_len, do
 	*out_max = (double)max(pos, len - pos);
 }
 
-void runs_based_on_median(double *out_num, double *out_len, const double dmedian, const uint8_t *data,  const uint32_t len)
+void runs_based_on_median(double *out_num, double *out_len, const double dmedian, const uint8_t *data, const uint32_t len)
 {
 	uint32_t num_runs = 1, len_runs = 1, max_len_runs = 0;
 	bool flag1 = 0, flag2 = 0;
@@ -185,6 +187,56 @@ void periodicity_covariance_test(double *out_num, double *out_strength, const ui
 
 	*out_num = t1;
 	*out_strength = t2;
+}
+
+void compression(double *out, const uint8_t *data, const uint32_t len, const uint32_t size)
+{
+	uint32_t max_symbol = (1 << size) - 1;
+
+	char buffer[5];
+	char *msg;
+	unsigned int curlen = 0;
+	char *curmsg;
+
+	// Build string of bytes
+	// Reserve the necessary size sample_size*(floor(log10(max_symbol))+2)
+	// This is "worst case" and accounts for the space at the end of the number, as well.
+	msg = new char[(size_t)(floor(log10((byte)max_symbol)) + 2.0)*len];
+	msg[0] = '\0';
+	curmsg = msg;
+
+	for (int i = 0; i < len; ++i) {
+		int res;
+		res = sprintf(curmsg, "%u ", data[i]);
+		curlen += res;
+		curmsg += res;
+	}
+
+	if (curlen > 0) {
+		// Remove the extra ' ' at the end
+		curmsg--;
+		*curmsg = '\0';
+		curlen--;
+	}
+
+	// Set up structures for compression
+	unsigned int dest_len = ceil(1.01*curlen) + 600;
+	char* dest = new char[dest_len];
+
+	// Compress and capture the size of the compressed data
+	int rc = BZ2_bzBuffToBuffCompress(dest, &dest_len, msg, curlen, 5, 0, 0);
+
+	// Free memory
+	delete[](dest);
+	delete[](msg);
+
+	// Return with proper return code
+	if (rc == BZ_OK) {
+		*out = (double)dest_len;
+	}
+	else {
+		*out = (double)0;
+	}
 }
 
 void conversion1(uint8_t *bdata, const uint8_t *data, const uint32_t len)
