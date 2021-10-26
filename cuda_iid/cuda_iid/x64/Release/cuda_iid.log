@@ -1,10 +1,1 @@
-﻿  permutation_testing.cpp
-c:\users\user\desktop\새 폴더\yeah_gpu_sp800_90b_iid\cuda_iid\cuda_iid\nvidia_help\helper_image.h(17): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
-c:\users\user\desktop\새 폴더\yeah_gpu_sp800_90b_iid\cuda_iid\cuda_iid\permutation_testing.cpp(87): warning C4101: 'statusMessage' :참조되지 않은 지역 변수입니다.
-     C:\Users\user\Desktop\새 폴더\yeah_GPU_SP800_90B_IID\cuda_iid\x64\Release\cuda_iid.lib 라이브러리 및 C:\Users\user\Desktop\새 폴더\yeah_GPU_SP800_90B_IID\cuda_iid\x64\Release\cuda_iid.exp 개체를 생성하고 있습니다.
-  코드를 생성하고 있습니다.
-  2 of 181 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
-  코드를 생성했습니다.
-  cuda_iid.vcxproj -> C:\Users\user\Desktop\새 폴더\yeah_GPU_SP800_90B_IID\cuda_iid\x64\Release\cuda_iid.exe
+﻿  cuda_iid.vcxproj -> C:\Users\user\Desktop\yeah_GPU_SP800_90B_IID-master\cuda_iid\x64\Release\cuda_iid.exe

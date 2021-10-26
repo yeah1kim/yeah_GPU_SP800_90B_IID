@@ -55,8 +55,8 @@ bool gpu_permutation_testing(double *dgpu_runtime, uint32_t *counts, double *res
 		blen = len / 8;
 		if ((len % 8) != 0)	blen++;
 	}
-	size_t Nlen = N * len;
-	size_t Nblen = N * blen;
+	size_t Nlen = (size_t)N * len;
+	size_t Nblen = (size_t)N * blen;
 
 	cudaError_t cudaStatus;
 	uint8_t *dev_data;
